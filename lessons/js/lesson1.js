@@ -170,10 +170,12 @@ function runLogs() {
     address: {
       city: "Ústí nad Labem",
       street: "Masarykova 89"
-    }
+    },
+    getSummary: function () { return `${this.name}-${this.age}` },
   }
   
   console.log( `Name: ${obj.name}, Surname: ${obj.surname}, Age: ${obj.age}, Male: ${obj.male}` );
+  console.log( obj.getSummary() );
   
   //  2. Operations
   //
@@ -305,13 +307,209 @@ function runLesson1( parent ) {
       <div class="row">
         <div class="col">
           <h5>Lesson 1 content</h5>
-          <p>Please open code and walk through.</p>
+          <p>Please open Web Developer Tools -> Console and walk through the logs.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <h6>Variables</h6>
+          <p>Declaration of variable is possible with <b><i>var, const, let</i></b>. In reality <b><i>var</i></b> has global scope and it behaves "strange" in local scope of function for example. You don't want to use it.
+          JavaScript is dynamic-typed language, there is no need to specify a variable type (in TypeScript you have to). Interpreter make type assumption from input.</p>
+        </div>
+        <div class="col-6">
+          <pre data-src="prism.js" class="language-javascript"><code class="language-javascript">let str = 'Hello World'; // string
+let num = 5;  // integer
+const arr = [1, 2, 3]; //array
+const obj = {
+    name: "Philip", 
+    high: 190, 
+    weight: 86.1 
+}; //object
+const empty = null; // null value
+let undef; // undefined value
+          </code></pre>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <h6>Type conversion</h6>
+          <p>Not everytime type is assumed correct, you need to re-type on your own. Here are just few examples, more of them you can find <a href="https://www.w3schools.com/js/js_type_conversion.asp">here</a>. Useful to check the type of variable is <b><i>typeof</i></b>.</p>
+        </div>
+        <div class="col-6">
+          <pre data-src="prism.js" class="language-javascript"><code class="language-javascript">str = String(89);
+str = (89).toString()
+num = Number("89");
+num = parseInt("89");
+num = parseFloat("8.9");</code></pre>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <h6>Usual number and string operations</h6>
+          <p>Like in other languages you can do math operations on numbers and also handle strings. Again more eamples you can find <a href=""https://www.w3schools.com/js/js_string_methods.asp>here</a> and <a href="https://www.w3schools.com/js/js_number_methods.asp">here</a>.</p>
+        </div>
+        <div class="col-6">
+          <pre data-src="prism.js" class="language-javascript"><code class="language-javascript">const hello = "hello";
+const world = "world";
+str = hello + " " + world; // concatenate two strings
+const templateLiteral = \`Template string with variable \${str}\`;
+const spacePosition = str.indexOf(" "); // find a spece position
+const arr = str.split(" "); // split string by space
+num = 10 + 2;
+num = 10 - 2;
+num = 10 * 2;
+num = 10 / 3;
+num += 10;</code></pre>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <h6>Arrays</h6>
+          <p>They are an collection of values, but values doesn't need to be the same type. Creation and usage is very similar to other C-like languages.</p>
+        </div>
+        <div class="col-6">
+          <pre data-src="prism.js" class="language-javascript"><code class="language-javascript">const arr1 = [1, 8, 56, 5];
+const arr2 = new Array(1, 8, 56, 5);
+const inconsitentArr = [2, 5, "Hello", {a: "a", b: 3}, true, 96];
+let element = arr1[3]; // 4th element
+let elementPosition = arr1.indexOf(56);
+let arrayLength = arr1.length;
+let array = Array.isArray(inconsitentArr); // check if variable is array
+arr1.push( 100 );     // append 100 to the end of array
+arr1.unshift( 200 );  //append 200 to the begining of array
+arr1.pop();         // delete 100 from the end
+arr1.shift();       // delete 200 from the begining
+arr1.splice( 1, 2 );  // deletes two elements begining on index 1
+const concat = arr1.concat( arr2 );  // join arrays together
+const sorted = concat.sort( (x,y) => x - y );</code></pre>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <h6>Objects</h6>
+          <p>In JavaScript everything what is not an basic type or array or Symbol is Object. Work with object is also usual as in other C-like languages.</p>
+        </div>
+        <div class="col-6">
+          <pre data-src="prism.js" class="language-javascript"><code class="language-javascript">const obj = {
+    name: "Petr",
+    age: 45,
+    male: true,
+    address: {
+      city: "Ústí nad Labem",
+      street: "Masarykova 89"
+    },
+    getSummary: function() { return \`\${this.name}-\${this.age}\`},
+  }
+obj.name = "Petra";
+const age = obj.age;
+
+          </code></pre>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <h6>Flow control with IF/ternary operator/SWITCH</h6>
+          <p>Usually you want to use IF for changing flow of script. In simple cases you can use ternary operator and in specific cases you can use SWITCH. JS beside variable content can also check type of variables. In most case you want this type checking, JS use for that <b><i>===</i></b> operator. Another interesting property is that FALSE, 0, null, undefined and NaN are all evaluated as FALSE.</p>
+        </div>
+        <div class="col-6">
+          <pre data-src="prism.js" class="language-javascript"><code class="language-javascript">  if ( obj.age == "20" ) { // check pass even obj.age is Number and value is String
+    console.log( "Use == : Object age is 20" );
+  }
+  
+  if ( obj.age == "20" ) { 
+    console.log( "Use == : Object age is \"20\"" );
+  } else {
+    console.log( "Use == : Object age is NOT \"20\"" );
+  }
+  if ( obj.age === 20 ) { 
+    console.log( "Use === : Object age is 20" );
+  }
+  
+  if ( obj.age === 25 ) { 
+    console.log( "Age 25" );
+  } else if ( obj.age < 25 ) { 
+    console.log( "Age is under 25" );
+  } else {
+    console.log( "Age is above 25" );
+  }
+  
+  // false, 0, null and undefined resolves as false !!!
+  if ( obj.profession ) { 
+    console.log( "Profession is defined" );
+  } else {
+    console.log( "Profession is not defined" );
+  }
+
+  const sex = obj.male ? "muž" : "žena";
+
+  obj.profession = "teacher"
+  switch (obj.profession) {
+    case "teacher":
+      console.log( "He/She is a teacher" );
+      break;
+    case "student":
+      console.log( "He/She is a student" );
+      break;
+    default:
+      console.log( \`Profession is some different: \${obj.profession}\` );
+  };</code></pre>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <h6>Function definition</h6>
+          <p>Pre ES6 approach is to define function with function keyword. ES6 came with arrow function, what is usually used, because it is shorter to write. But there are use cases where you cannot use arrow function (f.g. arrow func doesn't have binding to this keyword, so it cannot be used as method).</p>
+        </div>
+        <div class="col-6">
+          <pre data-src="prism.js" class="language-javascript"><code class="language-javascript">function greet(firstName = "Petr", lastName = "Novák") {
+  return \`Hello \${firstName} \${lastName}\`;
+}
+
+const greet_arrow = (firstName = "David", lastName = "Novák") => {
+  return \`Hello \${firstName} \${lastName}\`;
+}
+
+function variadic_fn(...args) {
+  args.forEach( arg => console.log( \`Argument is: \${arg}\` ) );
+}
+
+const fn = function(firstName, lastName) {
+  return \`Servus \${firstName} \${lastName}\`;
+};
+console.log( fn("Lenka", "Nováková") );</code></pre>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <h6>Specialities</h6>
+          <ul>
+            <li>Chainging operator - checks if object attribute has value in case not it will return <b><i>undefined</i></b>, but doesn't throw an exception.</li>
+            <li>Selector operator - if variable on left side evaluates as FALSE assigned is right side.</li>
+            <li>Selector operator - similar as upper, but use default value only in case of <i><b>null</i></b> and <i><b>undefined</i></b>.</li>
+          </ul>
+        </div>
+        <div class="col-6">
+          <pre data-src="prism.js" class="language-javascript"><code class="language-javascript">if (obj?.address?.street) {
+    console.log( \`Street is \${obj.address.street}\` );
+  }
+  console.log( \`ZIP code on object exist: \${obj.address\?.zip}\` );
+};
+
+const truth = "some string";
+let value = truth || "default value"; // some string
+value = 0 || "default value";         // default value                                      
+value = truth && "default value";     // some string
+value = 0 && "default value";         // 0
+          </code></pre>
         </div>
       </div>
     </div>
   `;
   parent.appendChild( element );
   runLogs();
+
+  // run code higlighting
+  Prism.highlightAll();
 
   console.log( nextSection( "calling functions" ) );
   console.log( greet() );
