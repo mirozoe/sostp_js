@@ -6,6 +6,7 @@
 // with Promises or even Async/Await keywords for writing code like synchronous one.
 //
 
+"use strict";
 
 function runLesson5( parent ) {
   const element = document.createElement( "div" );
@@ -14,7 +15,7 @@ function runLesson5( parent ) {
     <div class="container my-4">
       <div class="row">
         <div class="col">
-          <h5>Lesson 5 content</h5>
+          <h4>Lesson 5 content</h4>
           <p>When you click on the button, async call is made and after few seconds timeout it returns the result</p>
         </div>
       </div>

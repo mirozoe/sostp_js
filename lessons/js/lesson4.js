@@ -8,6 +8,8 @@
 // syntax.
 //
 
+"use strict";
+
 class Person {
   constructor( name ) {
     this.name = name;
@@ -91,7 +93,7 @@ function runLesson4( parent ) {
     <div class="container my-4">
       <div class="row">
         <div class="col">
-          <h5>Lesson 4 content</h5>
+          <h4>Lesson 4 content</h4>
           <p>Let's have class Person and than two subclasses (Student/Teacher). All classes are defined as follows:</p>
         </div>
       </div>

@@ -21,6 +21,8 @@
 // Reference: Math object https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math
 //            Strings https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/String
 
+"use strict";
+
 function runLogs() {
   console.log( nextSection( "LESSON 1" ) );
   
@@ -306,17 +308,17 @@ function runLesson1( parent ) {
     <div class="container my-4">
       <div class="row">
         <div class="col">
-          <h5>Lesson 1 content</h5>
+          <h4>Lesson 1 content</h4>
           <p>Please open Web Developer Tools -> Console and walk through the logs.</p>
         </div>
       </div>
       <div class="row">
-        <div class="col-6">
-          <h6>Variables</h6>
+        <div class="col-4">
+          <h5>Variables</h5>
           <p>Declaration of variable is possible with <b><i>var, const, let</i></b>. In reality <b><i>var</i></b> has global scope and it behaves "strange" in local scope of function for example. You don't want to use it.
           JavaScript is dynamic-typed language, there is no need to specify a variable type (in TypeScript you have to). Interpreter make type assumption from input.</p>
         </div>
-        <div class="col-6">
+        <div class="col-8">
           <pre data-src="prism.js" class="language-javascript"><code class="language-javascript">let str = 'Hello World'; // string
 let num = 5;  // integer
 const arr = [1, 2, 3]; //array
@@ -331,11 +333,11 @@ let undef; // undefined value
         </div>
       </div>
       <div class="row">
-        <div class="col-6">
-          <h6>Type conversion</h6>
+        <div class="col-4">
+          <h5>Type conversion</h5>
           <p>Not everytime type is assumed correct, you need to re-type on your own. Here are just few examples, more of them you can find <a href="https://www.w3schools.com/js/js_type_conversion.asp">here</a>. Useful to check the type of variable is <b><i>typeof</i></b>.</p>
         </div>
-        <div class="col-6">
+        <div class="col-8">
           <pre data-src="prism.js" class="language-javascript"><code class="language-javascript">str = String(89);
 str = (89).toString()
 num = Number("89");
@@ -344,11 +346,11 @@ num = parseFloat("8.9");</code></pre>
         </div>
       </div>
       <div class="row">
-        <div class="col-6">
-          <h6>Usual number and string operations</h6>
+        <div class="col-4">
+          <h5>Usual number and string operations</h5>
           <p>Like in other languages you can do math operations on numbers and also handle strings. Again more eamples you can find <a href=""https://www.w3schools.com/js/js_string_methods.asp>here</a> and <a href="https://www.w3schools.com/js/js_number_methods.asp">here</a>.</p>
         </div>
-        <div class="col-6">
+        <div class="col-8">
           <pre data-src="prism.js" class="language-javascript"><code class="language-javascript">const hello = "hello";
 const world = "world";
 str = hello + " " + world; // concatenate two strings
@@ -363,11 +365,11 @@ num += 10;</code></pre>
         </div>
       </div>
       <div class="row">
-        <div class="col-6">
-          <h6>Arrays</h6>
+        <div class="col-4">
+          <h5>Arrays</h5>
           <p>They are an collection of values, but values doesn't need to be the same type. Creation and usage is very similar to other C-like languages.</p>
         </div>
-        <div class="col-6">
+        <div class="col-8">
           <pre data-src="prism.js" class="language-javascript"><code class="language-javascript">const arr1 = [1, 8, 56, 5];
 const arr2 = new Array(1, 8, 56, 5);
 const inconsitentArr = [2, 5, "Hello", {a: "a", b: 3}, true, 96];
@@ -385,11 +387,11 @@ const sorted = concat.sort( (x,y) => x - y );</code></pre>
         </div>
       </div>
       <div class="row">
-        <div class="col-6">
-          <h6>Objects</h6>
+        <div class="col-4">
+          <h5>Objects</h5>
           <p>In JavaScript everything what is not an basic type or array or Symbol is Object. Work with object is also usual as in other C-like languages.</p>
         </div>
-        <div class="col-6">
+        <div class="col-8">
           <pre data-src="prism.js" class="language-javascript"><code class="language-javascript">const obj = {
     name: "Petr",
     age: 45,
@@ -407,12 +409,13 @@ const age = obj.age;
         </div>
       </div>
       <div class="row">
-        <div class="col-6">
-          <h6>Flow control with IF/ternary operator/SWITCH</h6>
+        <div class="col-4">
+          <h5>Flow control with IF/ternary operator/SWITCH</h5>
           <p>Usually you want to use IF for changing flow of script. In simple cases you can use ternary operator and in specific cases you can use SWITCH. JS beside variable content can also check type of variables. In most case you want this type checking, JS use for that <b><i>===</i></b> operator. Another interesting property is that FALSE, 0, null, undefined and NaN are all evaluated as FALSE.</p>
         </div>
-        <div class="col-6">
+        <div class="col-8">
           <pre data-src="prism.js" class="language-javascript"><code class="language-javascript">  if ( obj.age == "20" ) { // check pass even obj.age is Number and value is String
+    // == is called loose equity and JS tries implicit coersion
     console.log( "Use == : Object age is 20" );
   }
   
@@ -425,6 +428,7 @@ const age = obj.age;
     console.log( "Use === : Object age is 20" );
   }
   
+  // === is called strict equity JS doesn't do implicit coersion
   if ( obj.age === 25 ) { 
     console.log( "Age 25" );
   } else if ( obj.age < 25 ) { 
@@ -456,11 +460,14 @@ const age = obj.age;
         </div>
       </div>
       <div class="row">
-        <div class="col-6">
-          <h6>Function definition</h6>
-          <p>Pre ES6 approach is to define function with function keyword. ES6 came with arrow function, what is usually used, because it is shorter to write. But there are use cases where you cannot use arrow function (f.g. arrow func doesn't have binding to this keyword, so it cannot be used as method).</p>
+        <div class="col-4">
+          <h5>Function definition</h5>
+          <ul>
+            <li>Pre ES6 approach is to define function with function keyword. ES6 came with arrow function, what is usually used, because it is shorter to write. But there are use cases where you cannot use arrow function (f.g. arrow func doesn't have binding to this keyword, so it cannot be used as method).</li>
+            <li>Primitive types are passed by value. Objects and array are passed by reference, but you cannot change whole object/array what variable points to.</li>
+          </ul>
         </div>
-        <div class="col-6">
+        <div class="col-8">
           <pre data-src="prism.js" class="language-javascript"><code class="language-javascript">function greet(firstName = "Petr", lastName = "Novák") {
   return \`Hello \${firstName} \${lastName}\`;
 }
@@ -469,7 +476,7 @@ const greet_arrow = (firstName = "David", lastName = "Novák") => {
   return \`Hello \${firstName} \${lastName}\`;
 }
 
-function variadic_fn(...args) {
+function variadic_fn(...args) { // rest operator creates array from all the rest args
   args.forEach( arg => console.log( \`Argument is: \${arg}\` ) );
 }
 
@@ -480,15 +487,19 @@ console.log( fn("Lenka", "Nováková") );</code></pre>
         </div>
       </div>
       <div class="row">
-        <div class="col-6">
-          <h6>Specialities</h6>
+        <div class="col-4">
+          <h5>Specialities</h5>
           <ul>
-            <li>Chainging operator - checks if object attribute has value in case not it will return <b><i>undefined</i></b>, but doesn't throw an exception.</li>
-            <li>Selector operator - if variable on left side evaluates as FALSE assigned is right side.</li>
-            <li>Selector operator - similar as upper, but use default value only in case of <i><b>null</i></b> and <i><b>undefined</i></b>.</li>
+            <li>Chaining operator - checks if object attribute has value in case not it will return <b><i>undefined</i></b>, but doesn't throw an exception.</li>
+            <li>Default operator - if variable on left side evaluates as FALSE assigned is right side.</li>
+            <li>Nullish coalescing operator - if 1st opperand is null/undefined assign 2nd, otherweis return 1st</li>
+            <li>Guard operator - if 1st arg is true, use default value, otherweis 2nd one.</li>
+            <li>Spread operator - explode array into separate values</li>
+            <li>Rest operator - used in variadic functions</li>
+            <li>Implicit coersion - try to avoid it (f.g. https://github.com/denysdovhan/wtfjs)</li>
           </ul>
         </div>
-        <div class="col-6">
+        <div class="col-8">
           <pre data-src="prism.js" class="language-javascript"><code class="language-javascript">if (obj?.address?.street) {
     console.log( \`Street is \${obj.address.street}\` );
   }
@@ -497,9 +508,30 @@ console.log( fn("Lenka", "Nováková") );</code></pre>
 
 const truth = "some string";
 let value = truth || "default value"; // some string
-value = 0 || "default value";         // default value                                      
-value = truth && "default value";     // some string
+value = 0 || "default value";         // default value
+value = 0 ?? "default value";         // 0
+value = null ?? "default value";      // default value
+value = truth && "default value";     // default value 
 value = 0 && "default value";         // 0
+                           
+let array = [ 1,2,3 ];
+console.log( ...array );
+          </code></pre>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <h5>Logging to console</h5>
+          <p>For debugging purposes there are couple of logging possibilities. Ususally it is recommended to use them in development, but not in production code.</p>
+        </div>
+        <div class="col-8">
+          <pre data-src="prism.js" class="language-javascript"><code class="language-javascript">console.log(\`Somve value \${val}\`);
+console.warn("Warning");
+console.err("Error");
+console.debug("Debug");
+console.time("Start"); console.timeEnd("Start"); // Easy profiling
+console.assert( val > 10, "Value is higher"); // Conditional logging
+console.table(obj);
           </code></pre>
         </div>
       </div>

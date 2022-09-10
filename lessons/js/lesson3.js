@@ -22,6 +22,8 @@
 //
 //  Proceedure to handle events is to first register function to handle event (addEventListener). It is possible also to deregister function (removeEventListener) when it is not needed anymore. Usually it is not a case.
 
+"use strict";
+
 function updateInputedTextLesson3( event ) {
   const inputedText = document.querySelector( "p#inputedTextLesson3" );
   inputedText.innerText = event.target.value;
@@ -38,7 +40,7 @@ function runLesson3( parent ) {
     <div class="container my-4">
       <div class="row">
         <div class="col">
-          <h5>Lesson 3 content</h5>
+          <h4>Lesson 3 content</h4>
           <p>Following button/input has associated eventListener and is going to change color of the text</p>
           <div>
             <label for="freeTextLesson3" class="form-label">Input some text</label>

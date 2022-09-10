@@ -8,7 +8,7 @@
 // * Creating new DOM elements and add them to DOM
 //
 
-
+"use strict";
 
 function logExamples() {
   // 1. Selecting from already existing DOM
@@ -72,9 +72,52 @@ function logExamples() {
 }
 
 function displayContent( parent ) {
+  const desc = document.createElement( "div" );
+  desc.innerHTML = `
+    <div class="row">
+      <div class="col">
+        <p>Big strength of JS is possibility to manipulate with DOM (Document Object Model). It is tree based model
+          what represents HTML page. JS can walk through the tree and can modify it (add/delete/edit). To do such
+          there are planty of functions what can be used. There is <b><i>window</i></b> object what represents browser
+          opened window. Child is <b><i>document</i></b> object, what represents DOM.
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <h5>Window</h5>
+        <b><i>Window</i></b> object describes browser window and allows you to manipulate with it. API description available <a href="https://www.w3schools.com/jsref/obj_window.asp">here</a>.
+      </div>
+      <div class="col-8">
+        <pre data-src="prism.js" class="language-javascript"><code class="language-javascript">
+// properties
+window.history  // holds history of window
+window.innerHeight, window.innerWidth // height, width with scrollbars
+window.location // holds URL
+                
+// methods
+window.open(), window.close() // opens, close new window
+window.resizeBy(), window.scrollBy()  // resize window, scroll in window
+window.alert(), window.confirm(), window.prompt()  // opens a dialog
+                                                   
+// child objects
+document  // DOM
+navigator // info about browser
+history   // history of browser session
+laction   // info about URL
+        </code></pre>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+      </div>
+    </div>
+  `
+
   // 3. Creating new elements
   //
   // Oldfashion way to manipulate a DOM
+  //
 
   const newDiv = document.createElement( "div" );
   newDiv.setAttribute( "id", "lesson2" );
@@ -84,17 +127,18 @@ function displayContent( parent ) {
   row.className = "row";
   const col = document.createElement( "div" );
   col.className = "col";
-  const header = document.createElement( "h5" );
+  const header = document.createElement( "h4" );
   const par = document.createElement( "p" );
   par.innerText = "Please open code and walk through.";
 
   // TextNode is distinguishable in NodeList, but not in HTMLElements
   const headerText = document.createTextNode( "Lesson 2 content" );
   header.appendChild( headerText );
-  col.appendChild( header );
   col.appendChild( par );
   row.appendChild( col );
   container.appendChild( row );
+  newDiv.appendChild( header );
+  newDiv.appendChild( desc );
   newDiv.appendChild( container );
 
   // Alternatively you can update innerHTML property
@@ -130,7 +174,7 @@ function displayContent( parent ) {
   par2.innerText = "This is text on what are classes changed via JS.";
   col.appendChild( par2 );
 
-  par2.className = "h6";
+  par2.className = "h5";
   console.log( `now par2 has this class: ${par2.className}` );
   par2.classList.add( "display-6" );
   console.log( `and now par2 has this classes: ${par2.className}` );
@@ -147,6 +191,7 @@ function displayContent( parent ) {
   //  B. Remove child with removeChild()
   //
 //  col.removeChild( par2 );
+  Prism.highlightAll();
 }
 
 function runLesson2( parent ) {
