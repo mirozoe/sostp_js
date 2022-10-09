@@ -527,7 +527,7 @@ console.log( ...array );
         <div class="col-8">
           <pre data-src="prism.js" class="language-javascript"><code class="language-javascript">console.log(\`Somve value \${val}\`);
 console.warn("Warning");
-console.err("Error");
+console.error("Error");
 console.debug("Debug");
 console.time("Start"); console.timeEnd("Start"); // Easy profiling
 console.assert( val > 10, "Value is higher"); // Conditional logging

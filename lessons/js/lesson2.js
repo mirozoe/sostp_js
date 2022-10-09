@@ -178,6 +178,9 @@ laction   // info about URL
   console.log( `now par2 has this class: ${par2.className}` );
   par2.classList.add( "display-6" );
   console.log( `and now par2 has this classes: ${par2.className}` );
+  par2.classList.add("display-1");
+  par2.classList.remove("display-1");
+  console.log(`classes applied on par2: ${par2.className}`);
 
   // 6. Remove/Replace elements in DOM
   //
