@@ -104,7 +104,7 @@ window.alert(), window.confirm(), window.prompt()  // opens a dialog
 document  // DOM
 navigator // info about browser
 history   // history of browser session
-laction   // info about URL
+location   // info about URL
         </code></pre>
       </div>
     </div>
