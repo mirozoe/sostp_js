@@ -21,6 +21,8 @@
 //  * paste
 //
 //  Proceedure to handle events is to first register function to handle event (addEventListener). It is possible also to deregister function (removeEventListener) when it is not needed anymore. Usually it is not a case.
+//
+//  For form validation you can very well use RegExp. It is a complex pattern matching approach to parsing a text. Great tutorial, unfortunately a bit hard is here https://www.regular-expressions.info. 
 
 "use strict";
 
@@ -31,6 +33,7 @@ function click( event ) {
 
 const doubleclick = ( event ) => {
   window.alert( "Now you have doubleclicked" );
+  console.log( event )
 }
 
 function updateInputedTextLesson3( event ) {
@@ -40,6 +43,10 @@ function updateInputedTextLesson3( event ) {
 
 function generateColor() {
   return Math.floor( (Math.random() * 1000) % 255 );
+}
+
+function validateText( input ) {
+  return input.match(/^[a-zA-ZýÝ]+$/);
 }
 
 function runLesson3( parent ) {
@@ -90,7 +97,7 @@ document.querySelector("#exampleButton").addEventListener("click", displayHello)
               <p id="inputedTextLesson3" />
             </div>
           </div>
-          <button class="btn btn-primary">Change color</button>
+          <button id="button4" class="btn btn-primary">Change color</button>
         </div>
       </div>
       <div class="row my-3">
@@ -101,11 +108,50 @@ document.querySelector("#exampleButton").addEventListener("click", displayHello)
       <div class="row">
         <div class="col-4">
           <p>For better user experience it is important to let end user know what is allowed to fill in forms. In case user use some unvalid input to let him/her know this is wrong. Validation usually is done with regular expression (RegEx) or third party libraries (f.e. validate.js).</p>
+          <p>Usually author needs to provide feedback to enduser if input is incorrect in form of error message, what appears after click on submit button. Bootstrap provides two classes (is-valid/is-invalid) for input, textarea and select elements. Submit button has default behavior and sends form content to backend server. To prevent this behavior we need to call .preventDefault() and .stopPropagation().</p>
         </div>
         <div class="col-8">
-          <pre data-src="prism.js" class="language-javascript"><code class="language-javascript">
+          <pre data-src="prism.js" class="language-javascript"><code class="language-javascript">function validateText( input ) {
+  return input.match(/^[a-zA-Z]+$/);
+}
+  document.querySelector( "form button" ).addEventListener( "click", event => {
+    const assignClass = ( input, element ) => {
+      if ( validateText( input ) ) {
+        element.classList.remove("is-invalid");
+        element.classList.add("is-valid");
+      } else {
+        element.classList.remove("is-valid");
+        element.classList.add("is-invalid");
+      }
+    }
+
+    const firstName = document.querySelector( "#firstName" );
+    assignClass( firstName.value, firstName );
+
+    event.preventDefault();
+    event.stopPropagation();
+  });
           </code></pre>
         </div>
+      </div>
+      <div class="row my-3">
+        <form novalidate>
+          <div class="col">
+            <label for="firstName" class="form-label">First name</label>
+            <input type="text" class="form-control" id="firstName" required>
+            <div class="invalid-feedback">
+              You can input only characters
+            </div>
+          </div>
+          <div class="col">
+            <label for="lastName" class="form-label">Last name</label>
+            <input type="text" class="form-control" id="lastName" required>
+            <div class="invalid-feedback">
+              You can input only characters
+            </div>
+          </div>
+          <button class="btn btn-primary my-2" type="submit">Submit form</button>
+        </form>
       </div>
     </div>
   `;
@@ -123,14 +169,37 @@ document.querySelector("#exampleButton").addEventListener("click", displayHello)
   const inputText = document.querySelector( "input#freeTextLesson3" );
   inputText.addEventListener( "keyup", updateInputedTextLesson3 );
 
-  const buttonClick = document.querySelector( "div#lesson3 button" );
+  const buttonClick = document.querySelector( "#button4" );
   buttonClick.addEventListener( "click", ( event ) => {
     const red = generateColor();
     const green = generateColor();
     const blue = generateColor();
-    console.log(`rgb( ${red}, ${green}, ${blue} )`);
     document.querySelector( "p#inputedTextLesson3" ).style.color = `rgb( ${red}, ${green}, ${blue} )`;
   } );
+
+  // Assign functionality to Submit button
+  document.querySelector( "form button" ).addEventListener( "click", event => {
+
+    // To follow DRY principle I have function 
+    const assignClass = ( input, element ) => {
+      if ( validateText( input ) ) {
+        element.classList.remove("is-invalid");
+        element.classList.add("is-valid");
+      } else {
+        element.classList.remove("is-valid");
+        element.classList.add("is-invalid");
+      }
+    }
+
+    const firstName = document.querySelector( "#firstName" );
+    const lastName = document.querySelector( "#lastName" );
+
+    assignClass( firstName.value, firstName );
+    assignClass( lastName.value, lastName );
+
+    event.preventDefault();
+    event.stopPropagation();
+  });
 
   Prism.highlightAll();
 }
