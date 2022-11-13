@@ -46,7 +46,7 @@ function generateColor() {
 }
 
 function validateText( input ) {
-  return input.match(/^[a-zA-ZýÝ]+$/);
+  return input.match(/^[a-zA-ZáÁčČěĚšŠřŘžŽíÍýÝ]+$/);
 }
 
 function runLesson3( parent ) {
