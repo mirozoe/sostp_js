@@ -166,7 +166,7 @@ function runLesson5( parent ) {
         console.error( err );
       };
   });
-  
+
   // run code higlighting
   Prism.highlightAll();
 
