@@ -6,7 +6,7 @@ Under following [URL](https://ac7minh6n7s3rw4qfchrofbwai0amiko.lambda-url.eu-nor
 - Method: GET, Path: / - returns whole library
 - Method: POST, Path: /, Body: { "author": "xyz" } - serach library for specific author (returns 200 if found, if not 404)
 - Method: POST, Path: /, Body: { "name": "xyz" } - search library for specific book based on name (returns 200 if found, if not 404)
-API doesn't use diacritics (f.e. ěščř). If you are interest code for API you can find in this repo in `src/backend/index.js`
+API doesn't use diacritics (f.e. ěščř). If you are interest code for API you can find in this repo in `src/backend/index.js. If you are interested feel free to use different API, some [examples](https://github.com/public-apis/public-apis).
 
 Example call:
 ``curl https://xyz.lambda-url.eu-north-1.on.aws/ -d '{"author":"Otta"}' -v
@@ -19,3 +19,6 @@ Your task will be to create application, where you will use async call (specific
 - display received books in DOM as a new list
 
 Your code host on JSFiddle, CodePen or ...
+
+Deadline:
+- midnight Su 18.12. 2022
