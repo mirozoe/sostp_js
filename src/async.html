@@ -1,0 +1,54 @@
+<html>
+  <body>
+    <h2>JSONPlaceholder request</h2>
+    <button>Call</button>
+    <ul></ul>
+    <script>
+      // ES8 equal function to .then/.catch ES6 fetch Promise handling
+      const callFunctionAsync = async () => {
+        try {
+          const result = await fetch("https://jsonplaceholder.typicode.com/posts", {
+               method: "POST",
+               headers: {"Content-type": "application/json"},
+               body: JSON.stringify({
+                  title: "Test",
+                  body: "Test body",
+                  userId: 3,
+               }), 
+            })
+          const j = await result.json()
+          return j.id
+        } catch ( err ) {
+           console.log( err )
+        }
+      }
+
+      // This is example of use then/catch functions from ES6
+      const callFunction = () => {
+        return new Promise( (resolve, reject) => {
+          fetch("https://jsonplaceholder.typicode.com/posts", {
+             method: "POST",
+             headers: {"Content-type": "application/json"},
+             body: JSON.stringify({
+                title: "Test",
+                body: "Test body",
+                userId: 3,
+             }),
+          })
+          .then( result => {
+            if ( result.status === 201 ) return result.json()
+          })
+          .then( json => { 
+            resolve( json.id )
+          })
+          .catch( err => console.log( err ) )
+        })
+      }
+
+      document.querySelector("button").addEventListener("click", event => {
+        callFunctionAsync().then( res => console.log(res))
+      })
+
+    </script>
+  </body>
+</html>

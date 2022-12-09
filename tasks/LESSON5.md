@@ -1,4 +1,5 @@
 # Optional tasks to Lesson5
+- Await/Async explanation is hosted [here](https://sostp-my.sharepoint.com/:v:/g/personal/hlavka_sostp_cz/EVh7S6yChFZEkGx2Q2AFfAsBIyQ2DKMHZPsDHj-e3tIX3w?e=emgqvZ)
 - Following "Library API" is hosted on AWS, maybe if you are interested I made short series about AWS [here](https://sostp-my.sharepoint.com/:f:/g/personal/hlavka_sostp_cz/ErdwWfc9lQ5HlaCbbokAlmkB1CeTbG36YrAmrBgxX8m0pQ?e=Z1HeA3)
 
 # Mandatory task to Lesson5
@@ -18,7 +19,7 @@ Your task will be to create application, where you will use async call (specific
 - validate inputs to not be longer than 30 characters
 - display received books in DOM as a new list
 
-Your code host on JSFiddle, CodePen or ...
+Your code host on JSFiddle, CodePen or ... It can happen that none of previously mentioned tools won't work correctly, then please send source code via email.
 
 Deadline:
 - midnight Su 18.12. 2022
