@@ -22,4 +22,4 @@ Your task will be to create application, where you will use async call (specific
 Your code host on JSFiddle, CodePen or ... It can happen that none of previously mentioned tools won't work correctly, then please send source code via email.
 
 Deadline:
-- midnight Su 18.12. 2022
+- midnight Wed 21.12. 2022

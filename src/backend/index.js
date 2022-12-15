@@ -1,4 +1,5 @@
-const GET = "GET"
+const GET     = "GET"
+
 const library = [
   { "author": "Karel Capek", "name": "Matka", "release_year": 2004 },
   { "author": "Bohumil Hrabal", "name": "Obsluhoval jsem anglickeho krale", "release_year": 2007 },
@@ -36,6 +37,12 @@ const search_library = (library, search, fn) => {
 
 const build_ret = ( message, code ) => {
   return {
+    headers: {
+        "Content-Type": "text/html; charset=utf-8",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+        "Access-Control-Allow-Headers": "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization"
+      },
     body: JSON.stringify( message ),
     statusCode: code
   }
@@ -45,8 +52,8 @@ export const handler = async (event) => {
   if ( event.requestContext.http.method === GET ) {
     return build_ret( library, 200 )
   }
-  
-  const body = JSON.parse( atob( event.body ) )
+
+  const body = JSON.parse( event.body )
   
   if ( body.author && body.name) {
 
