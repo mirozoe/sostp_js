@@ -1,0 +1,62 @@
+openapi: 3.0.0
+info:
+  title: SOSTP_JS_Lesson5
+  description: This is REST API definition for BackeEnd server used in Lesson5
+  version: 1.0.0
+paths:
+  /:
+    get:
+      summary: Get all records
+      description: Get all book records, what are present in current "database"
+      responses:
+        "200":
+          description: Valid request response
+          content:
+            "application/json":
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/book'
+    post:
+      summary: Request specific records
+      description: Get specific records based on author or book name
+      requestBody:
+        content:
+          "application/json":
+            schema:
+              oneOf:
+              - type: object
+                properties:
+                  author:
+                    type: string
+              - type: object
+                properties:
+                  name:
+                    type: string
+      responses:
+        "200":
+          description: Valid request response
+          content:
+            "application/json":
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/book'
+        "400":
+          description: You can search either by author or book name but not both simultanously
+        "404":
+          description: There wasn't found any book with such specification
+
+components:
+  schemas:
+    book:
+      type: object
+      properties:
+        author:
+          type: string
+        name:
+          type: string
+        release_year:
+          type: integer
+          minimum: 1900
+          maximum: 2022

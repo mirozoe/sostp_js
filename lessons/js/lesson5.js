@@ -110,6 +110,11 @@ function runLesson5( parent ) {
   });</code></pre>
         </div>
       </div>
+      <div class="row>
+        <div class="col">
+          For better communication between frontend and backend develeopers there is commonly used interface called <a href="https://oai.github.io/Documentation/specification.html">OpenAPI/Swagger</a> what easily and clearly describe REST API interface. OpenAPI format is well known and is supported by cloud providers (AWS, GCP, ...) as well as numerous libraries you can use for development. Another advantage of using formulized API is support for mocking backend reponses. Light example you could find <a href="../src/backend/openapi.yaml">here</a>.
+        </div>
+      </div>
     </div>`;
   parent.appendChild( element );
 
