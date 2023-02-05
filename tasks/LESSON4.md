@@ -1,4 +1,4 @@
-# Mandatory task to Lesson 5
+# Mandatory task to Lesson 4
 
 In `assets/PA_0054_KT----35833A_00_2023.xml` file ([source](https://portal.cisjr.cz/pub/draha/celostatni/szdc/2023/)) you will find one train connection from Ústí nad Labem to Litvínov. Your task is to get all objects in `<CZPTTLocation>` and transfer them into object. Data what you will transfer are only `<PrimaryLocationName>` and `<Timing TimingQualifierCode="ALA"><Time>` (arrive time, is not present at first location) and `<Timing TimingQualifierCode="ALD"><Time>` (departure time, is not present at last location).
 
