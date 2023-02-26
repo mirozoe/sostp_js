@@ -1,1 +1,3 @@
-src/todo/index.html
+src/shares/__pycache__
+src/shares/shares.py
+src/static/*
