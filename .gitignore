@@ -1,3 +1,7 @@
 src/shares/__pycache__
 src/shares/shares.py
 src/static/*
+tf/.terraform
+tf/.terraform.lock.hcl
+tf/terraform.tfstate
+tf/terraform.tfstate.backup

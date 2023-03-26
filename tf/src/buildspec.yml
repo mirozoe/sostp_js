@@ -1,0 +1,14 @@
+version: 0.2
+
+phases:
+  build:
+    commands:
+      - echo "Changing into source directory $CODEBUILD_SRC_DIR/tf/src/"
+      - cd $CODEBUILD_SRC_DIR/tf/src/
+      - echo "Installing dependencies into src file"
+      - python3 -m unittest shares.py
+      - zip shares.zip shares.py
+artifacts:
+  files:
+    - 'shares.zip'
+  discard-paths: yes
