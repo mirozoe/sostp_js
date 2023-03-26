@@ -7,8 +7,7 @@ phases:
       - cd $CODEBUILD_SRC_DIR/tf/src/
       - echo "Installing dependencies into src file"
       - python3 -m unittest shares.py
-      - zip shares.zip shares.py
 artifacts:
   files:
-    - 'shares.zip'
+    - 'shares.py'
   discard-paths: yes
