@@ -15,30 +15,30 @@ resource "aws_s3_object" "init_script" {
   source = "shares.zip"
 }
 
-resource "aws_cloudformation_stack" "sostp_js-shares_lambda" {
-  name = "lambda-demo-ci"
-
-  template_body = jsonencode({
-    Resources = {
-     LambdaCI  = {
-        Type = "AWS::Lambda::Function"
-        Properties = {
-          Code = {
-            S3Bucket = "lambda-ci-cd-sostpjs"
-            S3Key = "init_shares.zip"
-          }
-          Description = "This is CICD Lambda CF demo"
-          FunctionName = "lambda_demo_ci"
-          Handler = "not.used.in.provided.runtime"
-          MemorySize = 128
-          PackageType = "Zip"
-          Role = "arn:aws:iam::045949373633:role/student_lambda"
-          Runtime = "python3.9"
-        }
-      }
-    }
-  })
-}
+#resource "aws_cloudformation_stack" "sostp_js-shares_lambda" {
+#  name = "lambda-demo-ci"
+#
+#  template_body = jsonencode({
+#    Resources = {
+#     LambdaCI  = {
+#        Type = "AWS::Lambda::Function"
+#        Properties = {
+#          Code = {
+#            S3Bucket = "lambda-ci-cd-sostpjs"
+#            S3Key = "init_shares.zip"
+#          }
+#          Description = "This is CICD Lambda CF demo"
+#          FunctionName = "lambda_demo_ci"
+#          Handler = "not.used.in.provided.runtime"
+#          MemorySize = 128
+#          PackageType = "Zip"
+#          Role = "arn:aws:iam::045949373633:role/student_lambda"
+#          Runtime = "python3.9"
+#        }
+#      }
+#    }
+#  })
+#}
 
 resource "aws_iam_policy" "cicd_policy" {
   name        = "cicd_policy"
@@ -55,7 +55,8 @@ resource "aws_iam_policy" "cicd_policy" {
                 "lambda:GetAlias",
                 "lambda:GetProvisionedConcurrencyConfig",
                 "sns:Publish",
-                "codestar-connections:UseConnection"
+                "codestar-connections:UseConnection",
+                "iam:PassRole"
         ]
         Effect    = "Allow"
         Resource  = "*"
@@ -90,12 +91,9 @@ resource "aws_iam_policy" "cicd_policy" {
         ]
       }, {
         Action = [
-                "s3:PutObject",
-                "s3:GetObject",
-                "s3:GetObjectVersion",
-                "s3:GetBucketAcl",
-                "s3:GetBucketLocation",
-                "s3:*"
+                "s3:Get*",
+                "s3:Put*",
+                "s3:List*"
         ]
         Effect    = "Allow"
         Resource  = "arn:aws:s3:::lambda-ci-cd-sostpjs/*"
@@ -115,6 +113,12 @@ resource "aws_iam_policy" "cicd_policy" {
         ]
         Effect    = "Allow"
         Resource  = "arn:aws:codebuild:us-east-1:*:project/*"
+      }, {
+        Action    = [
+                "cloudformation:*"
+        ]
+        Effect    = "Allow"
+        Resource  = "arn:aws:cloudformation:us-east-1:*:stack/lambda-demo-ci/*"
       }
     ]
   })
@@ -145,7 +149,8 @@ resource "aws_iam_policy" "codebuild_policy" {
                 "s3:GetObject",
                 "s3:GetObjectVersion",
                 "s3:GetBucketAcl",
-                "s3:GetBucketLocation"
+                "s3:GetBucketLocation",
+                "s3:List*"
         ]
         Effect    = "Allow"
         Resource  = "arn:aws:s3:::lambda-ci-cd-sostpjs/*"
@@ -159,6 +164,18 @@ resource "aws_iam_policy" "codebuild_policy" {
         ]
         Effect    = "Allow"
         Resource  = "arn:aws:codebuild:us-east-1:*:report-group/sostp_js-shares*"
+      }, {
+        Action    = [
+                "cloudformation:*"
+        ]
+        Effect    = "Allow"
+        Resource  = "arn:aws:cloudformation:us-east-1:*:stack/lambda-demo-ci/*"
+      }, {
+        Action    = [
+                "lambda:*"
+        ]
+        Effect    = "Allow"
+        Resource  = "*"
       }
     ]
   })
@@ -200,6 +217,47 @@ resource "aws_iam_policy" "codedeploy_policy" {
     ]
   })
 }
+
+resource "aws_iam_policy" "cloudformation_policy" {
+  name        = "cloudformation_policy"
+  path        = "/"
+  description = "CI/CD cloudformation policy"
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = [
+                "s3:GetObject",
+                "s3:GetObjectVersion"
+        ]
+        Effect    = "Allow"
+        Resource  = "*"
+      }, {
+        Action = [
+                "s3:Get*",
+                "s3:Put*",
+                "s3:List*"
+        ]
+        Effect    = "Allow"
+        Resource  = "arn:aws:s3:::lambda-ci-cd-sostpjs/*"
+      }, {
+        Action    = [
+                "cloudformation:*"
+        ]
+        Effect    = "Allow"
+        Resource  = "arn:aws:cloudformation:us-east-1:*:stack/lambda-demo-ci/*"
+      }, {
+        Action    = [
+                "lambda:*"
+        ]
+        Effect    = "Allow"
+        Resource  = "*"
+      }
+    ]
+  })
+}
+
 resource "aws_iam_role" "pipeline_role" {
   name = "sostp_js-pipeline_role"
 
@@ -261,9 +319,31 @@ resource "aws_iam_role" "codedeploy_role" {
   })
 }
 
+resource "aws_iam_role" "cloudformation_role" {
+  name = "cloudformation_role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Principal = {
+          Service = "cloudformation.amazonaws.com"
+        }
+      },
+    ]
+  })
+}
+
 resource "aws_iam_role_policy_attachment" "codedeploy-policy-attach" {
   role       = aws_iam_role.codedeploy_role.name
   policy_arn = aws_iam_policy.codedeploy_policy.arn
+}
+
+resource "aws_iam_role_policy_attachment" "cloudformation-policy-attach" {
+  role       = aws_iam_role.cloudformation_role.name
+  policy_arn = aws_iam_policy.cloudformation_policy.arn
 }
 
 resource "aws_codebuild_project" "sostpjs" {
@@ -382,12 +462,12 @@ resource "aws_codepipeline" "codepipeline" {
       version         = "1"
 
       configuration = {
-        ActionMode     = "REPLACE_ON_FAILURE"
+        ActionMode     = "CREATE_UPDATE"
         Capabilities   = "CAPABILITY_AUTO_EXPAND,CAPABILITY_IAM"
         OutputFileName = "CreateStackOutput.json"
-        StackName      = aws_cloudformation_stack.sostp_js-shares_lambda.name
+        StackName      = "lambda-demo-ci"
         TemplatePath   = "build_output::lambda_cf.yaml"
-        RoleArn        = aws_iam_role.pipeline_role.arn
+        RoleArn        = aws_iam_role.cloudformation_role.arn
       }
     }
   }
