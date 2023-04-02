@@ -5,3 +5,4 @@ tf/.terraform
 tf/.terraform.lock.hcl
 tf/terraform.tfstate
 tf/terraform.tfstate.backup
+tf/src/__pycache__
