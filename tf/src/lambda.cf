@@ -1,0 +1,15 @@
+Resources:
+  MyLambda:
+    Type: "AWS::Lambda::Function"
+    Properties:
+        Code:
+          S3Bucket: "lambda-ci-cd-sostpjs"
+          S3Key: "sostp_js-shares-pipe/build_outp/dHn7oIE"
+        Description: "My Lambda"
+        FunctionName: "lambda_demo_ci"
+        Handler: "not.used.in.provided.runtime"
+        MemorySize: 128 
+        PackageType: "Zip"
+        Role: "arn:aws:iam::045949373633:role/student_lambda"
+        Runtime: "python3.9"
+        Timeout: 30

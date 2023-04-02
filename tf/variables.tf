@@ -8,12 +8,5 @@ variable "students" {
     "student5",
     "student6",
     "student7",
-    "student8",
-    "student9",
-    "student10",
-    "student11",
-    "student12",
-    "student13",
-    "student14",
   ]
 }

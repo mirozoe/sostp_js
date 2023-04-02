@@ -111,7 +111,7 @@ resource "aws_iam_group_policy_attachment" "students_policy" {
   policy_arn = aws_iam_policy.students_policy.arn
 }
 
-output "student1_pass" {
-  value = [ for p in aws_iam_user_login_profile.student_pass : p.password ]
+output "student_pass" {
+  value = { for p in aws_iam_user_login_profile.student_pass : p.user => p.password }
 }
 
