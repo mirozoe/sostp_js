@@ -8,7 +8,7 @@ resource "aws_s3_bucket_acl" "bucket_cicd_acl" {
   acl    = "private"
 }
 
-resource "aws_s3_bucket_object" "init_script" {
+resource "aws_s3_object" "init_script" {
   bucket = aws_s3_bucket.bucket_cicd.id
   key    = "init_shares.zip"
   acl    = "private"
@@ -16,7 +16,7 @@ resource "aws_s3_bucket_object" "init_script" {
 }
 
 resource "aws_cloudformation_stack" "sostp_js-shares_lambda" {
-  name = "lambda_demo_ci"
+  name = "lambda-demo-ci"
 
   template_body = jsonencode({
     Resources = {
@@ -386,7 +386,8 @@ resource "aws_codepipeline" "codepipeline" {
         Capabilities   = "CAPABILITY_AUTO_EXPAND,CAPABILITY_IAM"
         OutputFileName = "CreateStackOutput.json"
         StackName      = aws_cloudformation_stack.sostp_js-shares_lambda.name
-        TemplatePath   = "build_output::lambda.cf"
+        TemplatePath   = "build_output::lambda_cf.yaml"
+        RoleArn        = aws_iam_role.pipeline_role.arn
       }
     }
   }

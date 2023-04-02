@@ -11,4 +11,5 @@ artifacts:
   type: "zip"
   files:
     - 'tf/src/shares.py'
+    - 'tf/src/lambda_cf.yaml'
   discard-paths: yes
