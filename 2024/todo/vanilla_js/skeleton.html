@@ -13,6 +13,7 @@
           <div class="row">
             <h4>ToDo List</h4>
           </div>
+          <div id="placeholder"></div>
           <form>
             <div class="row">
               <div class="col-9">
@@ -30,11 +31,27 @@
       </div>
     </div>
     <script>
+      let list_items = []
+
       const button_add = document.querySelector("#add")
       button_add.addEventListener("click", button_clicked)
 
-      function button_clicked() {
+      function button_clicked(event) {
+        event.preventDefault()
 
+        const input = document.querySelector("input").value
+        document.querySelector("input").value = ""
+        list_items.push(input)
+
+        generate_items()
+      }
+
+      function generate_items() {
+        for (let i = 0; i < list_items.length; i++) {
+          const row = document.createElement("div")
+          row.textContent = list_items[i]
+          document.querySelector("#placeholder").appendChild(row)
+        }
       }
     </script>
   </body>
