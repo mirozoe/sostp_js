@@ -11,3 +11,4 @@ Tento adresář skrývá několik úkolů, které můžete samostatně řešit a
 [Přehledný tutorial](https://javascript.info)
 [W3Schools tutorial](https://www.w3schools.com/js/DEFAULT.asp)
 [JS a CSS přednášky ČVUT](https://www.youtube.com/playlist?list=PLQL6z4JeTTQnxYKuRxC8grBc1Y1YOzMto)
+[Korespondenční seminář MFF UK](https://ksp.mff.cuni.cz)

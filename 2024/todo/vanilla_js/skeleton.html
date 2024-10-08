@@ -17,7 +17,8 @@
           <form>
             <div class="row">
               <div class="col-9">
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" id="input">
+                <div class="invalid-feedback">Musíte vložit nějaký text</div>
               </div>
               <div class="col">
                 <button class="btn btn-primary" id="add">Add</button>
@@ -36,21 +37,62 @@
       const button_add = document.querySelector("#add")
       button_add.addEventListener("click", button_clicked)
 
+      function validate_input(input) {
+        if (input === "") {
+          document.querySelector("#input").classList.add("is-invalid")
+        } else {
+          document.querySelector("#input").classList.remove("is-invalid")
+        }
+      }
+
       function button_clicked(event) {
         event.preventDefault()
 
-        const input = document.querySelector("input").value
-        document.querySelector("input").value = ""
+        const input = document.querySelector("#input").value
+        document.querySelector("#input").value = ""
+
+        validate_input(input)
+
         list_items.push(input)
 
         generate_items()
       }
 
+      function strikeThrough(event) {
+        console.log(event.target.checked)
+      }
+
+      function generate_item(parentElement, input) {
+        const row = document.createElement("div")
+        row.classList.add("row")
+
+        const colCheck = document.createElement("div")
+        colCheck.classList.add("col-1")
+
+        const colText = document.createElement("div")
+        colText.classList.add("col")
+
+        row.appendChild(colCheck)
+        row.appendChild(colText)
+
+        const checkbox = document.createElement("input")
+        checkbox.classList.add("form-check-input")
+        checkbox.setAttribute("type", "checkbox")
+        checkbox.addEventListener("click", strikeThrough)
+        colCheck.appendChild(checkbox)
+
+        const textField = document.createElement("p")
+        textField.textContent = input
+        colText.appendChild(textField)
+
+        parentElement.appendChild(row)
+      }
+
       function generate_items() {
+        const placeholder = document.querySelector("#placeholder")
+        placeholder.innerHTML = ""
         for (let i = 0; i < list_items.length; i++) {
-          const row = document.createElement("div")
-          row.textContent = list_items[i]
-          document.querySelector("#placeholder").appendChild(row)
+          generate_item(placeholder, list_items[i])
         }
       }
     </script>
