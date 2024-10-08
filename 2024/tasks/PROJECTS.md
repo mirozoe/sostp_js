@@ -11,5 +11,5 @@
 * vizualizace fractal flames (canvas) (JS)
 * využití ML KNN algoritmu na testovém datasetu s vizualizací (př. TensorFlow) (JS, D3)
 
-Please register your project [here](https://forms.gle/ZcbHP8u4UoqBbvC46)
+Prosím přihlašte si téma svého projektu [zde](https://forms.gle/En9qFWkgzAw5dTey9)
 

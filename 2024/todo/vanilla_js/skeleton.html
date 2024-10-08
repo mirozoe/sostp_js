@@ -18,6 +18,7 @@
             <div class="row">
               <div class="col-9">
                 <input type="text" class="form-control">
+                <div class="invalid-feedback">Musíte vložit nějaký text</div>
               </div>
               <div class="col">
                 <button class="btn btn-primary" id="add">Add</button>
@@ -36,21 +37,32 @@
       const button_add = document.querySelector("#add")
       button_add.addEventListener("click", button_clicked)
 
+      function validate_input(input) {
+        if (input === "") {
+          document.querySelector("input").classList.add("is-invalid")
+        }
+      }
+
       function button_clicked(event) {
         event.preventDefault()
 
         const input = document.querySelector("input").value
         document.querySelector("input").value = ""
+
+        validate_input(input)
+
         list_items.push(input)
 
         generate_items()
       }
 
       function generate_items() {
+        const placeholder = document.querySelector("#placeholder")
+        placeholder.innerHTML = ""
         for (let i = 0; i < list_items.length; i++) {
           const row = document.createElement("div")
           row.textContent = list_items[i]
-          document.querySelector("#placeholder").appendChild(row)
+          placeholder.appendChild(row)
         }
       }
     </script>
