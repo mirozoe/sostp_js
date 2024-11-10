@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img src="../assets/bg.jpg" class="background" :class="{'move': hiddenVal}"/>
+    <img src="../assets/bg.jpg" class="background" />
     <form class="container login m-2" style="background: rgba(0,0,0,0.3)" >
       <label for="login" class="row m-1 form-label" style="color: white">Jméno</label>
       <input id="login" type="text" class="row m-1 form-control"/>
