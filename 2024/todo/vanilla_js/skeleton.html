@@ -24,7 +24,7 @@
                 <button class="btn btn-primary" id="add">Add</button>
               </div>
               <div class="col">
-                <button class="btn btn-primary">Clear all</button>
+                <button class="btn btn-primary" id="clear_all" disabled>Clear all</button>
               </div>
             </div>
           </form>
@@ -40,8 +40,16 @@
       function validate_input(input) {
         if (input === "") {
           document.querySelector("#input").classList.add("is-invalid")
+          return false
         } else {
           document.querySelector("#input").classList.remove("is-invalid")
+          return true
+        }
+      }
+
+      function toggle_clear_all() {
+        if (list_items.length > 0) {
+          document.querySelector("#clear_all").disabled = false
         }
       }
 
@@ -51,18 +59,24 @@
         const input = document.querySelector("#input").value
         document.querySelector("#input").value = ""
 
-        validate_input(input)
-
-        list_items.push(input)
-
-        generate_items()
+        if (validate_input(input)) {
+          list_items.push(input)
+          generate_items()
+          toggle_clear_all()
+        }
       }
 
       function strikeThrough(event) {
-        console.log(event.target.checked)
+        const indx = event.target.getAttribute("key")
+        if (event.target.checked) {
+          document.querySelector(`p[key="${indx}"]`).style.textDecoration = "line-through"
+        } else {
+          document.querySelector(`p[key="${indx}"]`).style.textDecoration = ""
+
+        }
       }
 
-      function generate_item(parentElement, input) {
+      function generate_item(parentElement, input, indx) {
         const row = document.createElement("div")
         row.classList.add("row")
 
@@ -79,10 +93,12 @@
         checkbox.classList.add("form-check-input")
         checkbox.setAttribute("type", "checkbox")
         checkbox.addEventListener("click", strikeThrough)
+        checkbox.setAttribute("key", indx)
         colCheck.appendChild(checkbox)
 
         const textField = document.createElement("p")
         textField.textContent = input
+        textField.setAttribute("key", indx)
         colText.appendChild(textField)
 
         parentElement.appendChild(row)
@@ -92,7 +108,7 @@
         const placeholder = document.querySelector("#placeholder")
         placeholder.innerHTML = ""
         for (let i = 0; i < list_items.length; i++) {
-          generate_item(placeholder, list_items[i])
+          generate_item(placeholder, list_items[i], i)
         }
       }
     </script>
