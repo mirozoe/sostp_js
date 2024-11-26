@@ -3,10 +3,10 @@
     <img src="../assets/bg.jpg" class="background" />
     <form class="container login m-2" style="background: rgba(0,0,0,0.3)" >
       <label for="login" class="row m-1 form-label" style="color: white">Jméno</label>
-      <input id="login" type="text" class="row m-1 form-control"/>
+      <input id="login" type="text" class="row m-1 form-control" v-model="login" />
       <label for="password" class="row m-1 form-label" style="color: white">Heslo</label>
-      <input id="password" type="password"  class="row m-1 form-control"/>
-      <button type="button" class="row btn btn-primary m-1" >Přihlásit se</button>
+      <input id="password" type="password"  class="row m-1 form-control" v-model="pass" />
+      <button type="button" class="row btn btn-primary m-1" @click="auth" >Přihlásit se</button>
     </form>
     <div class="text-danger error-text"></div>
   </div>
@@ -16,7 +16,12 @@
 </template>
 
 <script setup>
+  import { ref } from "vue"
 
+  const login = ref("")
+  const pass = ref("")
+
+  const auth = () => { console.log(login.value +" - " +pass.value) }
 </script>
 
 <style>
