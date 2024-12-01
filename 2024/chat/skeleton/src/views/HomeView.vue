@@ -21,7 +21,18 @@
   const login = ref("")
   const pass = ref("")
 
-  const auth = () => { console.log(login.value +" - " +pass.value) }
+  const auth = () => {
+    const result = fetch("http://localhost:3000/auth", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: login.value,
+        password: pass.value
+      })
+    })
+
+    console.log(result)
+  }
 </script>
 
 <style>
