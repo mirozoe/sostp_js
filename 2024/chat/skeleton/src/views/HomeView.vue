@@ -8,7 +8,7 @@
       <input id="password" type="password"  class="row m-1 form-control" v-model="pass" />
       <button type="button" class="row btn btn-primary m-1" @click="auth" >Přihlásit se</button>
     </form>
-    <div class="text-danger error-text"></div>
+    <div class="text-danger error-text" v-if="error">{{ error }}</div>
   </div>
   <div class="container">
 
@@ -20,9 +20,10 @@
 
   const login = ref("")
   const pass = ref("")
+  const error = ref("")
 
-  const auth = () => {
-    const result = fetch("http://localhost:3000/auth", {
+  const auth = async () => {
+    const result = await fetch("http://localhost:3000/auth", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -32,6 +33,12 @@
     })
 
     console.log(result)
+    if (result.status === 200) {
+      const body = await result.json()
+      console.log(body)
+    } else {
+      error.value = "Jméno nebo heslo jsou nesprávné"
+    }
   }
 </script>
 
