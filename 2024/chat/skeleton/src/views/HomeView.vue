@@ -1,7 +1,7 @@
 <template>
   <div>
-    <img src="../assets/bg.jpg" class="background" />
-    <form class="container login m-2" style="background: rgba(0,0,0,0.3)" >
+    <img src="../assets/bg.jpg" class="background" :class="{ move: success }" />
+    <form class="container login m-2" style="background: rgba(0,0,0,0.3)" :style="{ visibility: success }" >
       <label for="login" class="row m-1 form-label" style="color: white">Jméno</label>
       <input id="login" type="text" class="row m-1 form-control" v-model="login" />
       <label for="password" class="row m-1 form-label" style="color: white">Heslo</label>
@@ -10,17 +10,20 @@
     </form>
     <div class="text-danger error-text" v-if="error">{{ error }}</div>
   </div>
-  <div class="container">
-
+  <div class="container" v-if="success">
+    <Dashboard :login="login" />
   </div>
 </template>
 
 <script setup>
   import { ref } from "vue"
+  import Dashboard from "../components/Dashboard.vue"
+
 
   const login = ref("")
   const pass = ref("")
   const error = ref("")
+  const success = ref("")
 
   const auth = async () => {
     const result = await fetch("http://localhost:3000/auth", {
@@ -32,10 +35,11 @@
       })
     })
 
-    console.log(result)
     if (result.status === 200) {
-      const body = await result.json()
-      console.log(body)
+//      const body = await result.json()
+      result.json().then( function(json) {
+        success.value = "hidden"
+      })
     } else {
       error.value = "Jméno nebo heslo jsou nesprávné"
     }
