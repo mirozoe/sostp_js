@@ -1,6 +1,6 @@
 <template>
   <div class="row text-center mtb-3">
-    <h3>Chat s {{ users }}</h3>
+    <h3>Chat s </h3>
   </div>
   <div class="row">
     <div class="col">

@@ -11,7 +11,7 @@
     <div class="text-danger error-text" v-if="error">{{ error }}</div>
   </div>
   <div class="container" v-if="success">
-    <Dashboard :login="login" />
+    <Dashboard class="dashboard" :login="login" />
   </div>
 </template>
 
@@ -89,6 +89,7 @@ div {
   0% { opacity: 0; }
   100% { opacity: 1; }
 }
+
 .dashboard {
   top: -1100px;
   left: 0px;
