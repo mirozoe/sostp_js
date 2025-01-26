@@ -1,10 +1,13 @@
 import { Server } from "socket.io";
 import express from "express";
 import { createServer } from "node:http";
-import jwt from 'jsonwebtoken';
-import cors from 'cors';
+import jwt from "jsonwebtoken";
+import cors from "cors";
 
-const userLogins = [{ username: "test", password: "test" }, { username: "mirozoe", password: "test" }];
+const userLogins = [
+  { username: "test", password: "test" },
+  { username: "mirozoe", password: "test" },
+];
 const app = express();
 const PORT = process.env.PORT ?? "3000";
 
@@ -12,10 +15,12 @@ const PORT = process.env.PORT ?? "3000";
 app.use(express.json());
 
 // Middleware to enable CORS
-app.use(cors({
-  origin: "http://localhost:5173",
-  methods: ["GET", "POST"],
-}));
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST"],
+  }),
+);
 
 // Instantiate an Express Application
 const server = createServer(app);
@@ -27,13 +32,13 @@ const io = new Server(server, {
   },
 });
 
-let users = [];
+let users = [
+  { name: "Josef", id: "xyz" },
+  { name: "Jana", id: "abc" },
+];
 
 io.on("connection", (socket) => {
-  socket.emit(
-    "active_users",
-    users
-  );
+  socket.emit("active_users", users);
 
   socket.on("disconnect", () => {
     let disconnectedUser = "";
@@ -60,10 +65,7 @@ io.on("connection", (socket) => {
       console.log(`Login ${JSON.stringify(login)}`);
 
       // broadcasts to all users
-      io.emit(
-        "active_users",
-        users
-      );
+      io.emit("active_users", users);
     }
   });
 
@@ -78,16 +80,20 @@ io.on("connection", (socket) => {
 });
 
 // Add an HTTP request listener
-app.post('/auth', (req, res) => {
+app.post("/auth", (req, res) => {
   const { username, password } = req.body;
-  const user = userLogins.find(user => user.username === username && user.password === password);
+  const user = userLogins.find(
+    (user) => user.username === username && user.password === password,
+  );
 
   if (user) {
-    const token = jwt.sign({ username }, 'your_secret_key', { expiresIn: '1h' });
-    res.setHeader('Authorization', `Bearer ${token}`);
-    res.status(200).send({ message: 'Authentication successful', token });
+    const token = jwt.sign({ username }, "your_secret_key", {
+      expiresIn: "1h",
+    });
+    res.setHeader("Authorization", `Bearer ${token}`);
+    res.status(200).send({ message: "Authentication successful", token });
   } else {
-    res.status(401).send({ message: 'Authentication failed' });
+    res.status(401).send({ message: "Authentication failed" });
   }
 });
 
