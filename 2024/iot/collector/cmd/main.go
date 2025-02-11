@@ -19,7 +19,7 @@ const (
   temp sensor = "temp"
   sound sensor = "sound"
 )
-const STORE_URL = ""
+const STORE_URL = "https://europe-west3-"
 
 type Readout struct {
   Light int `json:"light"`

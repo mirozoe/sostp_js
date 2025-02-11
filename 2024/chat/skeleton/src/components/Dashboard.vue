@@ -3,7 +3,7 @@
     <div class="col-3" id="side">
       <h5 class="mb-5">Přihlášení uživatelé</h5>
       <div v-for="user in users" :key="user.id" class="row clearfix">
-        <a >{{ user.name }}<span class="badge text-bg-secondary" > </span></a>
+        <a @click="chatWithUser(user)" >{{ user.name }}<span class="badge text-bg-secondary" > </span></a>
       </div>
     </div>
     <div class="col">
@@ -15,7 +15,7 @@
             <p>{{ props.login }}</p>
           </div>
         </div>
-        <Chat v-if="userInChat" />
+        <Chat v-if="userInChat" :userInChat="userInChat" :socket="socket" :cancel="cancel" />
         <Intro v-else />
       </div>
     </div>
@@ -47,4 +47,12 @@
   watchEffect(async () => {
     await socket.emit("login", { name: props.login })
   });
+
+  const chatWithUser = (user) => {
+    userInChat.value = user
+  }
+
+  const cancel = () => {
+    userInChat.value = ""
+  }
 </script>
