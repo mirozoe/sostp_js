@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "test:unit": "vitest",
     "lint": "eslint . --fix",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/",
+    "test": "mocha"
   },
   "dependencies": {
     "bootstrap": "^5.3.3",
@@ -23,9 +24,11 @@
     "@vitest/eslint-plugin": "1.1.25",
     "@vue/eslint-config-prettier": "^10.1.0",
     "@vue/test-utils": "^2.4.6",
+    "chai": "^5.2.0",
     "eslint": "^9.18.0",
     "eslint-plugin-vue": "^9.32.0",
     "jsdom": "^26.0.0",
+    "mocha": "^11.1.0",
     "prettier": "^3.4.2",
     "vite": "^6.0.11",
     "vite-plugin-vue-devtools": "^7.7.1",

@@ -1,7 +1,7 @@
 <template>
   <div class="mt-3 bg-light">
     <h3 class="text-center">
-      {{ props.name }} [{{ props.data.getData()[0].unit }}]
+      {{ props.name }} [{{ props.data[0].getUnit() }}]
     </h3>
     <div ref="graph" class="m-3"></div>
   </div>
@@ -25,15 +25,14 @@ const svg = d3
   .attr("height", height + margin.top + margin.bottom);
 
 svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
-
 const x = d3
   .scaleTime()
   .domain([
     dayjs
-      .unix(Math.min(...props.data.getData().map((v) => v.timestamp)))
+      .unix(Math.min(...props.data.map((v) => v.getTimestamp())))
       .toDate(),
     dayjs
-      .unix(Math.max(...props.data.getData().map((v) => v.timestamp)))
+      .unix(Math.max(...props.data.map((v) => v.getTimestamp())))
       .toDate(),
   ])
   .range([0 + margin.left, width]);
@@ -41,8 +40,8 @@ const x = d3
 const y = d3
   .scaleLinear()
   .domain([
-    Math.max(...props.data.getData().map((v) => v.value)) + margin.top,
-    0,
+    Math.max(...props.data.map((v) => v.getValue())) + margin.top,
+0,
   ])
   .range([0, height - margin.bottom - margin.top]);
 
@@ -63,11 +62,11 @@ const line = d3
 
 svg
   .append("path")
-  .datum(props.data.getData().map((v) => dayjs.unix(v.timestamp).toDate()))
+  .datum(props.data.map((v) => dayjs.unix(v.getTimestamp()).toDate()))
   .attr("fill", "none")
   .attr("stroke", "steelblue")
   .attr("stroke-width", 1.5)
-  .attr("d", line(props.data.getData()));
+  .attr("d", line(props.data));
 
 onMounted(() => {
   graph.value.appendChild(svg.node());
