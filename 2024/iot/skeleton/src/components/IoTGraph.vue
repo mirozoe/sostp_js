@@ -1,7 +1,6 @@
 <template>
   <div class="mt-3 bg-light">
-    <h3 class="text-center">
-    </h3>
+    <h3 class="text-center"></h3>
     <div ref="graph" class="m-3"></div>
   </div>
 </template>

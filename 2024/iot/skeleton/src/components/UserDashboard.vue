@@ -4,22 +4,17 @@
   </nav>
   <div v-if="temp" class="container">
     <div class="row" style="width: 100%">
-      <div class="col-6">
-      </div>
-      <div class="col-6">
-      </div>
+      <div class="col-6"></div>
+      <div class="col-6"></div>
     </div>
     <div class="row" style="width: 100%">
-      <div class="col-6">
-      </div>
-      <div class="col-6">
-      </div>
+      <div class="col-6"></div>
+      <div class="col-6"></div>
     </div>
   </div>
 </template>
 
-<script setup>
-</script>
+<script setup></script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped></style>
