@@ -12,13 +12,13 @@
   </div>
   <div class="row text-center mt-3">
     <div class="col">
-      <input type="text" class="form-control" v-model="msg">
+      <input id="message" type="text" class="form-control" v-model="msg">
     </div>
     <div class="col-1 mx-2">
-      <button type="button" class="btn btn-primary" @click="send">Odeslat</button>
+      <button id="send" type="button" class="btn btn-primary" @click="send">Odeslat</button>
     </div>
     <div class="col-1 mx-2">
-      <button type="button" class="btn btn-primary" @click="props.cancel">Storno</button>
+      <button id="cancel" type="button" class="btn btn-primary" @click="props.cancel">Storno</button>
     </div>
   </div>
 </template>

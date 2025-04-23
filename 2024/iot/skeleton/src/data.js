@@ -15,6 +15,14 @@ export class Data {
     return this.value;
   }
 
+  getUnit() {
+    return this.unit;
+  }
+
+  getTimestamp() {
+    return this.timestamp;
+  }
+
   setTimestamp(t) {
     this.timestamp = t;
   }

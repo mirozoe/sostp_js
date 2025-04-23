@@ -11,24 +11,24 @@ describe("Test data class", function () {
   it("Parse all data", function () {
     const d = [
       { timestamp: 1234567, temp: 20, heading: 100, light: 100, sound: 20 },
-      { timestamp: 1234567, temp: 2, heading: 10, light: 10, sound: 2 },
+      { timestamp: 1234568, temp: 2, heading: 10, light: 10, sound: 2 },
     ];
     const lEx1 = new LightData(100),
       lEx2 = new LightData(10);
     lEx1.timestamp = 1234567;
-    lEx2.timestamp = 1234567;
+    lEx2.timestamp = 1234568;
     const hEx1 = new HeadingData(100),
       hEx2 = new HeadingData(10);
     hEx1.timestamp = 1234567;
-    hEx2.timestamp = 1234567;
+    hEx2.timestamp = 1234568;
     const tEx1 = new TempData(20),
       tEx2 = new TempData(2);
     tEx1.timestamp = 1234567;
-    tEx2.timestamp = 1234567;
+    tEx2.timestamp = 1234568;
     const sEx1 = new SoundData(20),
       sEx2 = new SoundData(2);
     sEx1.timestamp = 1234567;
-    sEx2.timestamp = 1234567;
+    sEx2.timestamp = 1234568;
     const [l, h, t, s] = Data.parseData(d);
     l.should.be.a("array").to.have.deep.members([lEx1, lEx2]);
     h.should.be.a("array").to.have.deep.members([hEx1, hEx2]);
