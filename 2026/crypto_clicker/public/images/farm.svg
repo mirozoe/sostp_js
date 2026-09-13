@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="rack" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1b2540" />
+      <stop offset="100%" stop-color="#080d1a" />
+    </linearGradient>
+  </defs>
+
+  <rect x="6" y="8" width="52" height="14" rx="3" fill="url(#rack)" stroke="#00f0ff" stroke-width="1.3" />
+  <rect x="6" y="25" width="52" height="14" rx="3" fill="url(#rack)" stroke="#00f0ff" stroke-width="1.3" />
+  <rect x="6" y="42" width="52" height="14" rx="3" fill="url(#rack)" stroke="#00f0ff" stroke-width="1.3" />
+
+  <g fill="#39ff14">
+    <circle cx="13" cy="15" r="2" />
+    <circle cx="13" cy="32" r="2" />
+    <circle cx="13" cy="49" r="2" />
+  </g>
+  <g fill="#a855f7" opacity="0.9">
+    <circle cx="20" cy="15" r="1.5" />
+    <circle cx="20" cy="32" r="1.5" />
+    <circle cx="20" cy="49" r="1.5" />
+  </g>
+
+  <g stroke="#00f0ff" stroke-width="1.2" opacity="0.6">
+    <path d="M28 12v6M33 12v6M38 12v6M43 12v6M48 12v6" />
+    <path d="M28 29v6M33 29v6M38 29v6M43 29v6M48 29v6" />
+    <path d="M28 46v6M33 46v6M38 46v6M43 46v6M48 46v6" />
+  </g>
+</svg>

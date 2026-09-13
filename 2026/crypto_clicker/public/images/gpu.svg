@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="gpuBody" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1d2740" />
+      <stop offset="100%" stop-color="#0b1020" />
+    </linearGradient>
+    <linearGradient id="gpuFan" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#00f0ff" />
+      <stop offset="100%" stop-color="#a855f7" />
+    </linearGradient>
+  </defs>
+
+  <rect x="4" y="16" width="56" height="32" rx="4" fill="url(#gpuBody)" stroke="#00f0ff" stroke-width="1.5" />
+  <rect x="10" y="48" width="8" height="6" fill="#0b1020" stroke="#00f0ff" stroke-width="1" />
+  <rect x="24" y="48" width="8" height="6" fill="#0b1020" stroke="#00f0ff" stroke-width="1" />
+
+  <g stroke="url(#gpuFan)" stroke-width="1.8" fill="none">
+    <circle cx="21" cy="32" r="9" />
+    <circle cx="43" cy="32" r="9" />
+  </g>
+  <g fill="#00f0ff" opacity="0.85">
+    <circle cx="21" cy="32" r="2.5" />
+    <circle cx="43" cy="32" r="2.5" />
+  </g>
+  <g stroke="#a855f7" stroke-width="1.2" opacity="0.8">
+    <path d="M21 23v6M21 35v6M12 32h6M24 32h6" />
+    <path d="M43 23v6M43 35v6M34 32h6M46 32h6" />
+  </g>
+
+  <rect x="4" y="10" width="34" height="6" rx="2" fill="#00f0ff" opacity="0.25" />
+  <text x="32" y="14.5" font-family="monospace" font-size="5" fill="#00f0ff" text-anchor="middle" opacity="0.9">RTX 5090</text>
+</svg>

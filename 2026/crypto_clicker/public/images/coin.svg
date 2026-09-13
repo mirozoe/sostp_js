@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <radialGradient id="coinFace" cx="38%" cy="30%" r="80%">
+      <stop offset="0%" stop-color="#ffe98a" />
+      <stop offset="45%" stop-color="#f7a712" />
+      <stop offset="100%" stop-color="#b05e04" />
+    </radialGradient>
+    <linearGradient id="coinRim" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffd76a" />
+      <stop offset="100%" stop-color="#a45a00" />
+    </linearGradient>
+    <filter id="coinGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <g filter="url(#coinGlow)">
+    <circle cx="64" cy="64" r="58" fill="url(#coinRim)" />
+    <circle cx="64" cy="64" r="48" fill="url(#coinFace)" />
+    <circle cx="64" cy="64" r="48" fill="none" stroke="#fff3c4" stroke-opacity="0.55" stroke-width="2" />
+  </g>
+
+  <path d="M56 30h9v10h6V30h9v10.6c9.4 1.6 15.4 7 15.4 15 0 5.6-3 10-8 12.2 6.6 2 10.6 6.9 10.6 13.6 0 9-6.8 15-17.9 16.4V98h-9V88h-6v10h-9V88H42V78h6.5V50H42V40h14V30z"
+        fill="#3d2200" opacity="0.25" transform="translate(2,2)" />
+  <path d="M56 30h9v10h6V30h9v10.6c9.4 1.6 15.4 7 15.4 15 0 5.6-3 10-8 12.2 6.6 2 10.6 6.9 10.6 13.6 0 9-6.8 15-17.9 16.4V98h-9V88h-6v10h-9V88H42V78h6.5V50H42V40h14V30zm5.5 20v16h11c5.4 0 8.6-3 8.6-8s-3.2-8-8.6-8h-11zm0 26v18h13c5.8 0 9.2-3.4 9.2-9s-3.4-9-9.2-9h-13z"
+        fill="#fff8dc" />
+</svg>

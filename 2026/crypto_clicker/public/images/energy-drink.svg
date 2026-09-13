@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="canBody" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#39ff14" />
+      <stop offset="55%" stop-color="#0fa30a" />
+      <stop offset="100%" stop-color="#053a06" />
+    </linearGradient>
+  </defs>
+
+  <rect x="22" y="12" width="20" height="42" rx="5" fill="url(#canBody)" stroke="#39ff14" stroke-width="1.5" />
+  <rect x="22" y="12" width="7" height="42" rx="4" fill="#ffffff" opacity="0.18" />
+  <ellipse cx="32" cy="12" rx="10" ry="3.2" fill="#c9d4dd" stroke="#39ff14" stroke-width="1" />
+  <rect x="19" y="26" width="26" height="13" rx="2" fill="#04140a" opacity="0.85" />
+  <path d="M35 27l-9 8h5l-2 6 9-8h-5z" fill="#39ff14" />
+  <g stroke="#39ff14" stroke-width="1.6" stroke-linecap="round" opacity="0.75">
+    <path d="M14 20c0-4 4-4 4-8" />
+    <path d="M50 20c0-4-4-4-4-8" />
+  </g>
+</svg>

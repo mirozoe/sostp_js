@@ -1,0 +1,477 @@
+/* ==========================================================================
+   CRYPTO CLICKER – neonový dark mode
+   ==========================================================================
+
+   CSS PROMĚNNÉ (custom properties): barvy definujeme na jednom místě.
+   Když budeš chtít změnit odstín neonové modré, upravíš jeden řádek
+   místo padesáti. Stejný princip jako konstanty v TypeScriptu.
+   ======================================================================== */
+
+:root {
+  /* Podklad */
+  --bg-deep: #05070f;
+  --bg-panel: #0d1222;
+  --bg-panel-hi: #141b30;
+  --border: #1f2942;
+
+  /* Neonová paleta */
+  --neon-cyan: #00f0ff;
+  --neon-magenta: #ff2fd0;
+  --neon-purple: #a855f7;
+  --neon-lime: #39ff14;
+  --gold: #ffc93c;
+
+  /* Text */
+  --text: #e6ecff;
+  --text-dim: #8a96b8;
+
+  --radius: 14px;
+  --shadow-neon: 0 0 20px rgb(0 240 255 / 35%);
+
+  /* `color-scheme` řekne prohlížeči, aby scrollbary a formuláře
+     vykreslil v tmavé variantě. Detail, který dělá rozdíl. */
+  color-scheme: dark;
+}
+
+/* Reset – bez něj se prohlížeče chovají mírně odlišně. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  /* Plynulý posun při odkazech v rámci stránky. */
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--bg-deep);
+  color: var(--text);
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+
+  /* Zabrání označení textu při rychlém klikání – v clicker hře nutnost. */
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* --------------------------------------------------------------------------
+   LAYOUT
+   -------------------------------------------------------------------------- */
+
+.app {
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Rozmazané neonové skvrny v pozadí. Dekorace, proto `aria-hidden`. */
+.app__glow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(600px circle at 15% 15%, rgb(0 240 255 / 12%), transparent 60%),
+    radial-gradient(500px circle at 85% 30%, rgb(255 47 208 / 10%), transparent 60%),
+    radial-gradient(700px circle at 50% 100%, rgb(168 85 247 / 10%), transparent 60%);
+  z-index: 0;
+}
+
+.app__content {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1rem 4rem;
+}
+
+.app__title {
+  text-align: center;
+  font-size: clamp(2rem, 6vw, 3.25rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--neon-cyan);
+  text-shadow:
+    0 0 8px rgb(0 240 255 / 70%),
+    0 0 28px rgb(0 240 255 / 35%);
+}
+
+.app__title-accent {
+  color: var(--neon-magenta);
+  text-shadow:
+    0 0 8px rgb(255 47 208 / 70%),
+    0 0 28px rgb(255 47 208 / 35%);
+}
+
+/* --------------------------------------------------------------------------
+   POČÍTADLO MINCÍ
+   -------------------------------------------------------------------------- */
+
+.counter {
+  margin: 1.5rem auto 0;
+  max-width: 520px;
+  text-align: center;
+  padding: 1.25rem;
+  background: linear-gradient(160deg, var(--bg-panel-hi), var(--bg-panel));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-neon);
+}
+
+.counter__label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--text-dim);
+}
+
+.counter__value {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.4rem;
+  margin: 0.25rem 0 0.75rem;
+}
+
+.counter__amount {
+  font-size: clamp(2.25rem, 9vw, 3.5rem);
+  font-weight: 800;
+
+  /* `tabular-nums` = číslice mají stejnou šířku, takže při rychlém růstu
+     počítadlo neposkakuje do stran. Malý detail, velký rozdíl. */
+  font-variant-numeric: tabular-nums;
+  color: var(--gold);
+  text-shadow: 0 0 18px rgb(255 201 60 / 45%);
+}
+
+.counter__currency {
+  font-size: 1.5rem;
+  color: var(--gold);
+  opacity: 0.8;
+}
+
+.counter__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.counter__stat {
+  padding: 0.5rem 0.25rem;
+  background: rgb(0 0 0 / 25%);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.counter__stat dt {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+}
+
+.counter__stat dd {
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--neon-cyan);
+}
+
+/* --------------------------------------------------------------------------
+   KLIKACÍ TLAČÍTKO
+   -------------------------------------------------------------------------- */
+
+.clicker {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2.5rem 0;
+}
+
+.clicker__button {
+  width: clamp(160px, 40vw, 220px);
+  aspect-ratio: 1;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+
+  /* `cubic-bezier` s přestřelením dá tlačítku pružný, „gumový" pocit. */
+  transition: transform 0.12s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Pulzující záře, aby tlačítko lákalo ke kliknutí. */
+  animation: pulse 2.4s ease-in-out infinite;
+  filter: drop-shadow(0 0 24px rgb(255 201 60 / 45%));
+}
+
+.clicker__button:hover {
+  transform: scale(1.05);
+}
+
+/* `:active` = stav během stisku. Zmáčknutí musí být cítit. */
+.clicker__button:active {
+  transform: scale(0.92);
+  animation: none;
+}
+
+/* Viditelný fokus pro ovládání klávesnicí – nikdy ho nevypínej bez náhrady. */
+.clicker__button:focus-visible {
+  outline: 3px solid var(--neon-cyan);
+  outline-offset: 6px;
+}
+
+.clicker__coin {
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+}
+
+.clicker__hint {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+/* Vrstva s odlétajícími čísly. */
+.clicker__floats {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  pointer-events: none; /* nesmí blokovat další klikání */
+}
+
+.clicker__float {
+  position: absolute;
+  left: var(--offset-x, 0);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--neon-lime);
+  text-shadow: 0 0 12px rgb(57 255 20 / 70%);
+  white-space: nowrap;
+  animation: float-up 0.9s ease-out forwards;
+}
+
+/* --------------------------------------------------------------------------
+   OBCHOD
+   -------------------------------------------------------------------------- */
+
+.shop__title {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--neon-purple);
+  text-shadow: 0 0 14px rgb(168 85 247 / 50%);
+}
+
+.shop__list {
+  list-style: none;
+
+  /* Responzivní mřížka BEZ media queries.
+     `auto-fill` + `minmax` samy dopočítají počet sloupců podle šířky –
+     na mobilu vyjde jeden, na velkém monitoru tři. */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.upgrade__button {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  padding: 1rem;
+  text-align: left;
+  color: inherit;
+  font: inherit;
+  background: linear-gradient(150deg, var(--bg-panel-hi), var(--bg-panel));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.upgrade--affordable .upgrade__button {
+  border-color: rgb(57 255 20 / 45%);
+  box-shadow: 0 0 16px rgb(57 255 20 / 15%);
+}
+
+.upgrade--affordable .upgrade__button:hover {
+  transform: translateY(-3px);
+  border-color: var(--neon-lime);
+  box-shadow: 0 0 26px rgb(57 255 20 / 30%);
+}
+
+.upgrade__button:focus-visible {
+  outline: 2px solid var(--neon-cyan);
+  outline-offset: 3px;
+}
+
+/* Nedostupné vylepšení – zašedlé a bez kurzoru „ruka". */
+.upgrade__button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+  filter: grayscale(0.7);
+}
+
+.upgrade__icon {
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0; /* ikona se nesmí zmáčknout dlouhým textem */
+}
+
+.upgrade__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0; /* umožní zalomení dlouhého textu v gridu */
+}
+
+.upgrade__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.upgrade__name {
+  font-weight: 700;
+  color: var(--neon-cyan);
+}
+
+.upgrade__level {
+  flex-shrink: 0;
+  padding: 0.1rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--bg-deep);
+  background: var(--neon-lime);
+  border-radius: 999px;
+}
+
+.upgrade__description {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: var(--text-dim);
+}
+
+.upgrade__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 0.2rem;
+}
+
+.upgrade__cost {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--gold);
+}
+
+.upgrade__effect {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--neon-magenta);
+}
+
+/* --------------------------------------------------------------------------
+   PATIČKA
+   -------------------------------------------------------------------------- */
+
+.app__footer {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.app__reset {
+  padding: 0.5rem 1.25rem;
+  font: inherit;
+  font-size: 0.85rem;
+  color: var(--neon-magenta);
+  background: transparent;
+  border: 1px solid rgb(255 47 208 / 40%);
+  border-radius: 999px;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.app__reset:hover {
+  background: rgb(255 47 208 / 12%);
+  box-shadow: 0 0 18px rgb(255 47 208 / 30%);
+}
+
+.app__note {
+  margin-top: 0.9rem;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+/* --------------------------------------------------------------------------
+   ANIMACE
+   -------------------------------------------------------------------------- */
+
+@keyframes pulse {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 20px rgb(255 201 60 / 40%));
+  }
+  50% {
+    filter: drop-shadow(0 0 38px rgb(255 201 60 / 75%));
+  }
+}
+
+@keyframes float-up {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-90px) scale(1.35);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   PŘÍSTUPNOST
+   --------------------------------------------------------------------------
+
+   Někteří lidé mají z pohybu na obrazovce nevolnost nebo migrénu a mají
+   proto v systému zapnuté „omezit animace". Tenhle dotaz jejich volbu
+   respektuje. Je to profesionální standard, ne nadstandard.
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Na velmi úzkých displejích zmenšíme odsazení, ať se vejde víc obsahu. */
+@media (max-width: 480px) {
+  .app__content {
+    padding: 1.25rem 0.75rem 3rem;
+  }
+
+  .counter__stats {
+    gap: 0.35rem;
+  }
+}

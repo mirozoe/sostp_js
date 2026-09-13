@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <radialGradient id="sun" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fffbe6" />
+      <stop offset="50%" stop-color="#ffd166" />
+      <stop offset="100%" stop-color="#ff7b00" />
+    </radialGradient>
+    <filter id="sunGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="3" result="b" />
+      <feMerge>
+        <feMergeNode in="b" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <circle cx="32" cy="32" r="15" fill="url(#sun)" filter="url(#sunGlow)" />
+
+  <g fill="none" stroke="#00f0ff" stroke-width="2" opacity="0.95">
+    <path d="M32 6a26 26 0 0 1 0 52" />
+    <path d="M32 6a26 26 0 0 0 0 52" />
+  </g>
+
+  <g fill="none" stroke="#a855f7" stroke-width="1.8" opacity="0.9">
+    <ellipse cx="32" cy="32" rx="26" ry="9" />
+    <ellipse cx="32" cy="32" rx="26" ry="20" />
+  </g>
+
+  <g fill="#00f0ff">
+    <rect x="52" y="28" width="6" height="8" rx="1" opacity="0.9" />
+    <rect x="6" y="28" width="6" height="8" rx="1" opacity="0.9" />
+    <rect x="28" y="4" width="8" height="6" rx="1" opacity="0.9" />
+    <rect x="28" y="54" width="8" height="6" rx="1" opacity="0.9" />
+  </g>
+</svg>
