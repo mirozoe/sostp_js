@@ -10,6 +10,10 @@ Podívejte se na následující krátká videa o TS:
 - https://www.youtube.com/watch?v=DojCwL4W8g0&list=PLQ8x_VWW6AkvlMSxICuexWjk_vwfWbqG1&index=11
 - https://www.youtube.com/watch?v=r4zLHuzFGI0&list=PLQ8x_VWW6AkvlMSxICuexWjk_vwfWbqG1&index=13
 
+Následující dvě videa vysvětlují práci s dynamicky alokovanou pamětí:
+- https://www.youtube.com/watch?v=t9XoYXavbS4
+- https://www.youtube.com/watch?v=y6IHi-ODv1w
+
 Dobrovolné video pro doplnění znalostí
 - https://www.youtube.com/watch?v=d56mG7DezGs&t=2s
 
