@@ -1,6 +1,7 @@
 # Seznam domácích úkolů
 
 ## Úvod do JS/TS (do 28.9.)
+
 Podívejte se na následující krátká videa o TS:
 - https://www.youtube.com/watch?v=mTt_D5idYWM&list=PLQ8x_VWW6AkvlMSxICuexWjk_vwfWbqG1&index=1
 - https://www.youtube.com/watch?v=SMjc982g0w4&list=PLQ8x_VWW6AkvlMSxICuexWjk_vwfWbqG1&index=4
@@ -10,10 +11,23 @@ Podívejte se na následující krátká videa o TS:
 - https://www.youtube.com/watch?v=DojCwL4W8g0&list=PLQ8x_VWW6AkvlMSxICuexWjk_vwfWbqG1&index=11
 - https://www.youtube.com/watch?v=r4zLHuzFGI0&list=PLQ8x_VWW6AkvlMSxICuexWjk_vwfWbqG1&index=13
 
-Následující dvě videa vysvětlují práci s dynamicky alokovanou pamětí:
+### Následující dvě videa vysvětlují práci s dynamicky alokovanou pamětí:
+
 - https://www.youtube.com/watch?v=t9XoYXavbS4
 - https://www.youtube.com/watch?v=y6IHi-ODv1w
 
-Dobrovolné video pro doplnění znalostí
+### Dobrovolné video pro doplnění znalostí
+
 - https://www.youtube.com/watch?v=d56mG7DezGs&t=2s
 
+## Úvod do tříd a práce s nimi (do 12.10.)
+
+- https://www.youtube.com/watch?v=QygRnETpBIg&list=PLTjRvDozrdlxJjrQ4phZAUmiRn-HbK3M_&index=2
+- https://www.youtube.com/watch?v=W9Ah_ZDFc1c&list=PLTjRvDozrdlxJjrQ4phZAUmiRn-HbK3M_&index=3
+- https://www.youtube.com/watch?v=tiWqCBXnWj0&list=PLTjRvDozrdlxJjrQ4phZAUmiRn-HbK3M_&index=4
+- https://www.youtube.com/watch?v=P17bFRuefjA&list=PLTjRvDozrdlxJjrQ4phZAUmiRn-HbK3M_&index=5
+- https://www.youtube.com/watch?v=azCCiJJjKr4&list=PLTjRvDozrdlxJjrQ4phZAUmiRn-HbK3M_&index=6
+
+## Úvod do React + TS (do 19.10.)
+
+- https://www.youtube.com/watch?v=SqcY0GlETPk&t=163s
