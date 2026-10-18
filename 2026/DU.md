@@ -31,3 +31,38 @@ Podívejte se na následující krátká videa o TS:
 ## Úvod do React + TS (do 19.10.)
 
 - https://www.youtube.com/watch?v=SqcY0GlETPk&t=163s
+
+### Samostatná klasifikovaná práce (odeslat mailem do 30.10.)
+
+Název úkolu: Webová aplikace pro sledování skóre zápasu 
+
+Specifikace aplikace:
+Vytvořte jednoduchou jednostránkovou aplikaci, která bude fungovat jako světelná tabule pro sledování skóre sportovního zápasu mezi dvěma týmy: **Domácí** a **Hosté**. 
+
+Aplikace musí obsahovat následující prvky a funkce: 
+
+1. Zobrazení skóre: Na obrazovce bude jasně vidět aktuální skóre obou týmů. Počáteční stav při načtení stránky je 0:0.
+2. Ovládací tlačítka: Každý tým bude mít svá vlastní tlačítka pro přičítání bodů: 
+
+  * Tlačítko "+1 bod"
+3. Resetování zápasu: Společné tlačítko "Reset zápasu", které po kliknutí vynuluje skóre obou týmů zpět na 0:0.
+4. Určení vítěze (Podmíněné zobrazování): Aplikace bude dynamicky reagovat na stav zápasu. Pod skóre nebo vedle něj se bude zobrazovat text, který se mění podle situace: 
+
+  * "Vyhrávají Domácí" (pokud mají více bodů)
+  * "Vyhrávají Hosté" (pokud mají více bodů)
+  * "Zápas je nerozhodný" (pokud mají stejně bodů)
+
+Technické požadavky: 
+
+* Framework: React (použití React hook useState).
+* Jazyk: TypeScript (striktní definice rozhraní pro stav komponenty interface State, zákaz používání typu any).
+* Architektura: Aplikace může být napsána v jedné hlavní komponentě (např. App.tsx).
+* Stylování: Základní vizuální úprava pomocí CSS, aby byla tabule přehledná (např. zarovnání týmů vedle sebe, dostatečně velké písmo pro skóre).
+
+Forma odevzdání:
+Odevzdávejte archiv (ZIP) obsahující zdrojový kód (složku src) a package.json. Složku node_modules před zabalením smažte. Případně můžete odevzdat odkaz na váš kód v JSFiddle.
+Hodnocení: Hodnotit se bude funkčnost, správné použití TypeScriptu a čistota kódu.
+
+### Pro doplnění znalostí
+
+- https://www.youtube.com/watch?v=91TIUURx5JM
